@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Children's Sponsor Letter Dashboard — Cambodia</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif+Khmer:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* World Vision orange system */
+    --gold: #FF7A1A;
+    --gold-light: #FFE3CC;
+    --gold-pale: #FFF4EA;
+    --orange-deep: #C8480F;
+    --orange-mid: #FF6B00;
+    --orange-bright: #FF8A33;
+    --red: #C0392B;
+    --red-light: #FBEAE7;
+    --blue-deep: #2B2521;
+    --blue-mid: #FF6B00;
+    --blue-light: #FFE9D6;
+    --charcoal: #2B2521;
+    --charcoal-soft: #3D352E;
+    --cream: #FBF7F2;
+    --cream-dark: #F2E9DD;
+    --text-primary: #241F1B;
+    --text-secondary: #6B5F54;
+    --text-muted: #A8998A;
+    --border: rgba(43,37,33,0.08);
+    --border-strong: rgba(43,37,33,0.14);
+    --white: #FFFFFF;
+    --shadow-sm: 0 1px 2px rgba(120,60,10,0.06), 0 2px 5px rgba(120,60,10,0.06);
+    --shadow-md: 0 6px 16px rgba(120,60,10,0.10), 0 2px 6px rgba(120,60,10,0.08);
+    --shadow-lg: 0 16px 40px rgba(120,60,10,0.16), 0 6px 16px rgba(120,60,10,0.10);
+    --shadow-inset: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -2px 4px rgba(120,60,10,0.04);
+    --shadow-pressed: inset 0 2px 5px rgba(120,60,10,0.18);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-xl: 26px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background:
+      radial-gradient(900px 500px at 100% -10%, rgba(255,138,51,0.10), transparent 60%),
+      radial-gradient(700px 500px at -5% 20%, rgba(255,107,0,0.06), transparent 55%),
+      var(--cream);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .khmer { font-family: 'Noto Serif Khmer', serif; }
+
+  /* ── Sidebar ── */
+  .layout { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background:
+      radial-gradient(180% 60% at 0% 0%, rgba(255,107,0,0.22), transparent 55%),
+      linear-gradient(165deg, #312a24 0%, var(--charcoal) 55%, #211c18 100%);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 100;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.18);
+  }
+
+  .sidebar-logo {
+    padding: 1.5rem 1.25rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .logo-mark {
+    width: 42px; height: 42px;
+    background: linear-gradient(150deg, var(--orange-bright) 0%, var(--orange-mid) 55%, var(--orange-deep) 100%);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+    box-shadow: 0 6px 14px rgba(255,107,0,0.45), inset 0 1px 1px rgba(255,255,255,0.45), inset 0 -3px 6px rgba(120,40,0,0.35);
+    position: relative;
+  }
+
+  .logo-mark svg { width: 23px; height: 23px; fill: var(--white); filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25)); }
+
+  .logo-name {
+    font-size: 13px; font-weight: 600;
+    color: var(--white); line-height: 1.3;
+  }
+
+  .logo-sub {
+    font-size: 11px; color: rgba(255,154,92,0.65);
+    margin-top: 2px;
+  }
+
+  .sidebar-nav { padding: 1rem 0.75rem; flex: 1; }
+
+  .nav-section-label {
+    font-size: 10px; font-weight: 600;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.75rem 0.5rem 0.35rem;
+  }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    color: rgba(255,255,255,0.6);
+    font-size: 13px; font-weight: 400;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 2px;
+    text-decoration: none;
+    border: none; background: none; width: 100%; text-align: left;
+  }
+
+  .nav-item:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+
+  .nav-item.active {
+    background: linear-gradient(135deg, rgba(255,138,51,0.25), rgba(255,107,0,0.12));
+    color: var(--orange-bright);
+    font-weight: 500;
+    box-shadow: inset 0 0 0 1px rgba(255,122,26,0.25), inset 0 1px 2px rgba(255,255,255,0.06);
+  }
+
+  .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  .nav-badge {
+    margin-left: auto; background: linear-gradient(150deg, var(--orange-bright), var(--orange-mid));
+    color: var(--white); font-size: 10px; font-weight: 700;
+    border-radius: 20px; padding: 1px 7px;
+    box-shadow: 0 2px 5px rgba(255,107,0,0.4);
+  }
+
+  .sidebar-footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .user-card {
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .user-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(150deg, var(--orange-bright), var(--orange-deep));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; color: var(--white);
+    flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(255,107,0,0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+  }
+
+  .user-name { font-size: 12px; font-weight: 500; color: var(--white); }
+  .user-role { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+  /* ── Main ── */
+  .main {
+    margin-left: 240px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Topbar ── */
+  .topbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.75rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .topbar-left { display: flex; align-items: center; gap: 12px; }
+
+  .page-title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+
+  .page-breadcrumb { font-size: 12px; color: var(--text-muted); }
+
+  .topbar-right { display: flex; align-items: center; gap: 10px; }
+
+  .topbar-btn {
+    padding: 6px 14px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500;
+    cursor: pointer; border: 1px solid var(--border-strong);
+    background: var(--white); color: var(--text-secondary);
+    display: flex; align-items: center; gap: 6px;
+    transition: all 0.15s;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .topbar-btn:hover { background: var(--cream); border-color: var(--border-strong); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+  .topbar-btn.primary {
+    background: linear-gradient(150deg, var(--orange-bright) 0%, var(--orange-mid) 100%);
+    color: var(--white); border-color: transparent;
+    box-shadow: 0 4px 12px rgba(255,107,0,0.35), inset 0 1px 1px rgba(255,255,255,0.35);
+  }
+
+  .topbar-btn.primary:hover { background: linear-gradient(150deg, var(--orange-bright), var(--orange-deep)); transform: translateY(-1px); }
+
+  .topbar-btn svg { width: 14px; height: 14px; }
+
+  .notif-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--red);
+    border: 2px solid var(--white);
+    position: absolute; top: 4px; right: 4px;
+  }
+
+  /* ── Content ── */
+  .content { padding: 1.75rem; flex: 1; }
+
+  /* ── Stats Row ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-card {
+    background: linear-gradient(165deg, #FFFFFF 0%, #FFFBF7 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.25rem 1rem;
+    box-shadow: var(--shadow-md), var(--shadow-inset);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg), var(--shadow-inset); }
+
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  }
+
+  .stat-card.gold::before { background: linear-gradient(90deg, var(--orange-bright), var(--orange-mid)); }
+  .stat-card.blue::before { background: linear-gradient(90deg, #FF9E5C, var(--orange-deep)); }
+  .stat-card.red::before { background: linear-gradient(90deg, #E25C46, var(--red)); }
+  .stat-card.green::before { background: linear-gradient(90deg, #4FAE74, #2A7A4B); }
+
+  .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+
+  .stat-value { font-size: 28px; font-weight: 300; color: var(--text-primary); line-height: 1.1; margin-bottom: 6px; }
+
+  .stat-change {
+    font-size: 12px; display: flex; align-items: center; gap: 4px;
+  }
+
+  .stat-change.up { color: #2A7A4B; }
+  .stat-change.down { color: var(--red); }
+  .stat-change.neutral { color: var(--text-muted); }
+
+  .stat-icon {
+    position: absolute; right: 1rem; top: 1rem;
+    width: 38px; height: 38px; border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 10px rgba(120,60,10,0.18), inset 0 1px 1px rgba(255,255,255,0.5);
+  }
+
+  .stat-icon svg { width: 19px; height: 19px; }
+  .stat-card.gold .stat-icon { background: linear-gradient(150deg, var(--gold-light), var(--gold)); }
+  .stat-card.blue .stat-icon { background: linear-gradient(150deg, #FFD8B0, var(--orange-deep)); }
+  .stat-card.red .stat-icon { background: linear-gradient(150deg, #F6C9C1, var(--red)); }
+  .stat-card.green .stat-icon { background: linear-gradient(150deg, #BCE8CC, #2A7A4B); }
+
+  /* ── Two-col layout ── */
+  .two-col { display: grid; grid-template-columns: 1fr 380px; gap: 1.25rem; margin-bottom: 1.25rem; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+
+  /* ── Panel ── */
+  .panel {
+    background: linear-gradient(165deg, #FFFFFF 0%, #FFFCF9 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md), var(--shadow-inset);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .panel-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(180deg, rgba(255,138,51,0.04), transparent);
+  }
+
+  .panel-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .panel-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+
+  .panel-action {
+    font-size: 12px; color: var(--orange-mid); cursor: pointer;
+    font-weight: 600; border: none; background: none; padding: 0;
+  }
+
+  .panel-body { padding: 1.25rem; }
+
+  /* ── Translation Tool ── */
+  .translator-wrap {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch;
+  }
+
+  .trans-pane {
+    padding: 1rem;
+  }
+
+  .trans-pane:first-child { border-right: 1px solid var(--border); }
+
+  .lang-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 20px; padding: 3px 10px;
+    font-size: 12px; font-weight: 500; color: var(--text-secondary);
+    margin-bottom: 10px;
+  }
+
+  .lang-flag { font-size: 14px; }
+
+  .trans-textarea {
+    width: 100%; border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 10px 12px;
+    font-size: 13px; line-height: 1.7; color: var(--text-primary);
+    font-family: 'Inter', sans-serif; resize: none; height: 140px;
+    background: var(--cream); outline: none;
+    transition: border-color 0.15s;
+    box-shadow: var(--shadow-pressed);
+  }
+
+  .trans-textarea:focus { border-color: var(--orange-mid); background: var(--white); }
+
+  .trans-output {
+    width: 100%; min-height: 140px; padding: 10px 12px;
+    font-size: 13px; line-height: 1.8;
+    border: 1px solid var(--border); border-radius: var(--radius-md);
+    background: var(--gold-pale); color: var(--text-primary);
+    white-space: pre-wrap;
+    box-shadow: var(--shadow-pressed);
+  }
+
+  .trans-output.khmer { font-family: 'Noto Serif Khmer', serif; font-size: 14px; line-height: 2; }
+
+  .trans-mid {
+    width: 64px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px; padding: 1rem 0;
+  }
+
+  .trans-btn {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(150deg, var(--orange-bright) 0%, var(--orange-mid) 60%, var(--orange-deep) 100%);
+    color: var(--white);
+    border: none; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: all 0.15s; box-shadow: 0 6px 14px rgba(255,107,0,0.45), inset 0 1px 1px rgba(255,255,255,0.45), inset 0 -3px 5px rgba(120,40,0,0.3);
+  }
+
+  .trans-btn:hover { transform: scale(1.07) translateY(-1px); box-shadow: 0 8px 18px rgba(255,107,0,0.55), inset 0 1px 1px rgba(255,255,255,0.45); }
+  .trans-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .trans-btn svg { width: 16px; height: 16px; }
+
+  .trans-mode {
+    font-size: 10px; color: var(--text-muted); text-align: center;
+    font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  /* ── Upload zone ── */
+  .upload-zone {
+    display: flex; align-items: center; gap: 14px;
+    border: 2px dashed var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 1.1rem;
+    background: linear-gradient(165deg, var(--gold-pale) 0%, var(--cream) 100%);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .upload-zone:hover, .upload-zone.dragover {
+    border-color: var(--orange-mid);
+    background: linear-gradient(165deg, var(--gold-light) 0%, var(--gold-pale) 100%);
+    box-shadow: var(--shadow-md);
+  }
+
+  .upload-zone.dragover { transform: scale(1.01); }
+
+  .upload-icon {
+    width: 44px; height: 44px; border-radius: var(--radius-md);
+    flex-shrink: 0;
+    background: linear-gradient(150deg, var(--orange-bright) 0%, var(--orange-mid) 60%, var(--orange-deep) 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white);
+    box-shadow: 0 6px 14px rgba(255,107,0,0.4), inset 0 1px 1px rgba(255,255,255,0.4);
+  }
+
+  .upload-icon svg { width: 22px; height: 22px; }
+
+  .upload-text { flex: 1; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .upload-text strong { color: var(--text-primary); font-weight: 600; }
+  .upload-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  .upload-btn {
+    padding: 8px 18px; border-radius: var(--radius-sm);
+    background: var(--white); color: var(--orange-deep);
+    border: 1px solid var(--border-strong); font-size: 13px; font-weight: 600;
+    cursor: pointer; white-space: nowrap; transition: all 0.15s;
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+  }
+
+  .upload-btn:hover { background: var(--gold-light); border-color: var(--orange-mid); transform: translateY(-1px); }
+
+  .upload-status {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--text-secondary);
+    padding: 8px 14px; border-radius: var(--radius-md);
+    background: var(--gold-pale);
+    margin-bottom: 1.1rem;
+  }
+
+  .upload-status.error { background: var(--red-light); color: var(--red); }
+  .upload-status.success { background: #D1FAE5; color: #065F46; }
+
+  .upload-spinner {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid rgba(255,107,0,0.25); border-top-color: var(--orange-mid);
+    animation: spin 0.8s linear infinite; flex-shrink: 0;
+  }
+
+  /* Mode tabs */
+  .mode-tabs {
+    display: flex; gap: 0;
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    overflow: hidden; margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .mode-tab {
+    flex: 1; padding: 7px 12px; font-size: 12px; font-weight: 500;
+    border: none; background: var(--white); color: var(--text-muted);
+    cursor: pointer; transition: all 0.15s; border-right: 1px solid var(--border);
+  }
+
+  .mode-tab:last-child { border-right: none; }
+  .mode-tab.active { background: linear-gradient(150deg, var(--orange-bright), var(--orange-mid)); color: var(--white); }
+
+  /* ── Letter Queue ── */
+  .letter-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+
+  .letter-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .letter-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600; flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(120,60,10,0.18), inset 0 1px 1px rgba(255,255,255,0.5);
+  }
+
+  .letter-meta { flex: 1; min-width: 0; }
+
+  .letter-name { font-size: 13px; font-weight: 500; color: var(--text-primary); }
+
+  .letter-preview {
+    font-size: 12px; color: var(--text-muted);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    margin-top: 2px;
+  }
+
+  .letter-time { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+
+  .status-pill {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em; border-radius: 20px; padding: 2px 8px;
+  }
+
+  .pill-pending { background: #FFE9CC; color: #92400E; }
+  .pill-translated { background: #D1FAE5; color: #065F46; }
+  .pill-sent { background: #E8E2DC; color: #5C5044; }
+  .pill-new { background: var(--red-light); color: var(--red); }
+
+  /* ── Activity feed ── */
+  .activity-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+
+  .activity-item:last-child { border-bottom: none; }
+
+  .activity-dot {
+    width: 8px; height: 8px; border-radius: 50%; margin-top: 4px; flex-shrink: 0;
+  }
+
+  .dot-gold { background: var(--gold); box-shadow: 0 0 0 3px rgba(255,122,26,0.18); }
+  .dot-blue { background: var(--orange-deep); box-shadow: 0 0 0 3px rgba(200,72,15,0.15); }
+  .dot-green { background: #2A7A4B; box-shadow: 0 0 0 3px rgba(42,122,75,0.15); }
+  .dot-red { background: var(--red); box-shadow: 0 0 0 3px rgba(192,57,43,0.15); }
+
+  .activity-text { flex: 1; color: var(--text-secondary); line-height: 1.5; }
+  .activity-text strong { color: var(--text-primary); font-weight: 500; }
+  .activity-time { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+
+  /* ── Children list ── */
+  .child-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+
+  .child-row:last-child { border-bottom: none; }
+
+  .child-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600; flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(120,60,10,0.18), inset 0 1px 1px rgba(255,255,255,0.5);
+  }
+
+  .child-name { font-size: 13px; font-weight: 500; color: var(--text-primary); line-height: 1.3; }
+  .child-detail { font-size: 11px; color: var(--text-muted); }
+  .child-info { flex: 1; }
+
+  /* ── Calendar ── */
+  .calendar-grid {
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; text-align: center;
+  }
+
+  .cal-day-name { font-size: 10px; color: var(--text-muted); font-weight: 600; padding: 4px 0; }
+
+  .cal-day {
+    font-size: 12px; padding: 5px 3px; border-radius: var(--radius-sm);
+    cursor: pointer; color: var(--text-secondary); transition: background 0.1s;
+  }
+
+  .cal-day:hover { background: var(--cream); }
+  .cal-day.today { background: linear-gradient(150deg, var(--orange-bright), var(--orange-mid)); color: var(--white); font-weight: 600; box-shadow: 0 3px 8px rgba(255,107,0,0.4); }
+  .cal-day.has-event { position: relative; }
+  .cal-day.has-event::after { content: ''; width: 4px; height: 4px; background: var(--orange-deep); border-radius: 50%; position: absolute; bottom: 1px; left: 50%; transform: translateX(-50%); }
+  .cal-day.other-month { color: var(--text-muted); opacity: 0.4; }
+
+  /* ── Progress bars ── */
+  .progress-item { margin-bottom: 1rem; }
+  .progress-item:last-child { margin-bottom: 0; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+  .progress-label span:first-child { color: var(--text-secondary); font-weight: 500; }
+  .progress-label span:last-child { color: var(--text-primary); font-weight: 600; }
+  .progress-track { height: 6px; background: var(--cream-dark); border-radius: 3px; overflow: hidden; box-shadow: inset 0 1px 2px rgba(120,60,10,0.12); }
+  .progress-fill { height: 100%; border-radius: 3px; transition: width 1s ease; box-shadow: inset 0 1px 0 rgba(255,255,255,0.3); }
+
+  /* ── Template cards ── */
+  .tpl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .tpl-card {
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: 12px;
+    cursor: pointer; transition: all 0.2s;
+  }
+
+  .tpl-card:hover { border-color: var(--orange-mid); box-shadow: var(--shadow-md); background: var(--white); transform: translateY(-2px); }
+
+  .tpl-icon {
+    width: 28px; height: 28px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 7px;
+    box-shadow: 0 3px 8px rgba(120,60,10,0.16), inset 0 1px 1px rgba(255,255,255,0.5);
+  }
+
+  .tpl-icon svg { width: 15px; height: 15px; }
+  .tpl-name { font-size: 12px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+  .tpl-desc { font-size: 11px; color: var(--text-muted); }
+
+  /* ── Table ── */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table td { padding: 10px 12px; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--gold-pale); }
+
+  /* ── Mini chart ── */
+  .sparkline { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+  .spark-bar {
+    flex: 1; border-radius: 3px 3px 0 0;
+    background: linear-gradient(180deg, var(--gold-light), #FFD8B0); transition: background 0.15s;
+    position: relative;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .spark-bar.highlight { background: linear-gradient(180deg, var(--orange-bright), var(--orange-mid)); box-shadow: 0 2px 6px rgba(255,107,0,0.35); }
+  .spark-bar:hover { background: linear-gradient(180deg, var(--orange-bright), var(--orange-mid)); }
+
+  /* ── Notification banner ── */
+  .banner {
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgba(255,255,255,0.18), transparent 50%),
+      linear-gradient(120deg, var(--orange-deep) 0%, var(--orange-mid) 45%, var(--orange-bright) 100%);
+    border-radius: var(--radius-lg); padding: 1.4rem 1.6rem;
+    color: var(--white); display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.5rem; position: relative; overflow: hidden;
+    box-shadow: 0 14px 32px rgba(200,72,15,0.32), inset 0 1px 1px rgba(255,255,255,0.25);
+  }
+
+  .banner::before {
+    content: ''; position: absolute; left: -10%; bottom: -60%;
+    width: 70%; height: 140%; border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+  }
+
+  .banner::after {
+    content: ''; position: absolute; right: -30px; top: -30px;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: rgba(255,255,255,0.10);
+  }
+
+  .banner-title { font-size: 16px; font-weight: 600; margin-bottom: 3px; position: relative; z-index: 1; }
+  .banner-sub { font-size: 13px; opacity: 0.85; position: relative; z-index: 1; }
+  .banner-flag { font-size: 28px; margin-right: 16px; position: relative; z-index: 1; }
+
+  .banner-cta {
+    padding: 9px 22px; background: var(--white); color: var(--orange-deep);
+    border-radius: var(--radius-sm); font-size: 13px; font-weight: 700;
+    border: none; cursor: pointer; white-space: nowrap; transition: all 0.15s;
+    z-index: 1; box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+  }
+
+  .banner-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,0,0,0.22); }
+
+  /* ── Section heading ── */
+  .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .section-title { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+  .section-link { font-size: 12px; color: var(--orange-mid); font-weight: 600; cursor: pointer; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .three-col { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); }
+    .main { margin-left: 0; }
+    .three-col { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .translator-wrap { grid-template-columns: 1fr; }
+    .trans-mid { flex-direction: row; width: 100%; padding: 0.5rem 1rem; }
+    .tpl-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+  /* ── Focus ── */
+  button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--blue-mid); outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ───── Sidebar ───── -->
+  <aside class="sidebar" role="navigation" aria-label="Main navigation">
+    <div class="sidebar-logo">
+      <div class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      </div>
+      <div class="logo-name">ស្ពានភ្ញោចចិត្ត</div>
+      <div class="logo-sub">Sponsor Bridge Cambodia</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Overview</div>
+      <button class="nav-item active" onclick="showSection('dashboard')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        Dashboard
+      </button>
+
+      <div class="nav-section-label">Letters</div>
+      <button class="nav-item" onclick="showSection('translate')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+        Translate letter
+        <span class="nav-badge">7</span>
+      </button>
+      <button class="nav-item" onclick="showSection('queue')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Letter queue
+      </button>
+      <button class="nav-item" onclick="showSection('history')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+        History
+      </button>
+      <button class="nav-item" onclick="showSection('templates')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+        Templates
+      </button>
+
+      <div class="nav-section-label">Children</div>
+      <button class="nav-item" onclick="showSection('children')">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        Children
+      </button>
+      <button class="nav-item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        Reports
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">SC</div>
+        <div>
+          <div class="user-name">Srey Chan</div>
+          <div class="user-role">Program coordinator</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ───── Main ───── -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div>
+          <div class="page-title" id="page-title">Dashboard</div>
+          <div class="page-breadcrumb">June 2025 · Phnom Penh office</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-btn" onclick="showSection('translate')">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          New translation
+        </button>
+        <button class="topbar-btn" style="position:relative; padding: 6px 10px;" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          <span class="notif-dot" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── DASHBOARD section ── -->
+    <div class="content" id="section-dashboard">
+
+      <!-- Banner -->
+      <div class="banner">
+        <div style="display:flex; align-items:center;">
+          <span class="banner-flag" aria-hidden="true">🇰🇭</span>
+          <div>
+            <div class="banner-title">Welcome back, Srey Chan</div>
+            <div class="banner-sub">7 letters are waiting for translation · 3 children have no recent letter</div>
+          </div>
+        </div>
+        <button class="banner-cta" onclick="showSection('translate')">Translate now</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card gold">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="var(--white)"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/></svg></div>
+          <div class="stat-label">Letters this month</div>
+          <div class="stat-value">142</div>
+          <div class="stat-change up">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M7 14l5-5 5 5z"/></svg>
+            +18% from last month
+          </div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="var(--white)"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3z"/></svg></div>
+          <div class="stat-label">Active children</div>
+          <div class="stat-value">58</div>
+          <div class="stat-change up">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M7 14l5-5 5 5z"/></svg>
+            4 new this quarter
+          </div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="var(--white)"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+          <div class="stat-label">Translations done</div>
+          <div class="stat-value">1,204</div>
+          <div class="stat-change neutral">All time total</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="var(--white)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>
+          <div class="stat-label">Pending review</div>
+          <div class="stat-value">7</div>
+          <div class="stat-change down">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:12px;height:12px"><path d="M7 10l5 5 5-5z"/></svg>
+            Needs attention
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content grid -->
+      <div class="two-col">
+
+        <!-- Left: Recent letters + activity -->
+        <div style="display:flex; flex-direction:column; gap:1.25rem;">
+
+          <!-- Letter queue preview -->
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-title">Recent letters</div>
+                <div class="panel-subtitle">Incoming & outgoing this week</div>
+              </div>
+              <button class="panel-action" onclick="showSection('queue')">View all →</button>
+            </div>
+            <div class="panel-body" style="padding: 0.5rem 1.25rem;">
+              <div class="letter-item">
+                <div class="letter-avatar" style="background:#EAF1FB; color:var(--blue-deep)">SR</div>
+                <div class="letter-meta">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:2px;">
+                    <span class="letter-name">Sophea Rath</span>
+                    <span class="status-pill pill-pending">Pending</span>
+                  </div>
+                  <div class="letter-preview khmer">ជូនចំពោះ​អ្នក​ឧបត្ថម្ភ​ជាទីគោរព...</div>
+                </div>
+                <div class="letter-time">2h ago</div>
+              </div>
+              <div class="letter-item">
+                <div class="letter-avatar" style="background:#D1FAE5; color:#065F46">JM</div>
+                <div class="letter-meta">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:2px;">
+                    <span class="letter-name">Sponsor → Dara Keo</span>
+                    <span class="status-pill pill-translated">Translated</span>
+                  </div>
+                  <div class="letter-preview">Dear Dara, I hope you are doing well in school...</div>
+                </div>
+                <div class="letter-time">5h ago</div>
+              </div>
+              <div class="letter-item">
+                <div class="letter-avatar" style="background:var(--red-light); color:var(--red)">LV</div>
+                <div class="letter-meta">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:2px;">
+                    <span class="letter-name">Lina Vuth</span>
+                    <span class="status-pill pill-new">New</span>
+                  </div>
+                  <div class="letter-preview khmer">ខ្ញុំ​សូម​ជម្រាប​ជូន​ដំណ​ើ​រ​ការ​សិក្សា...</div>
+                </div>
+                <div class="letter-time">1d ago</div>
+              </div>
+              <div class="letter-item">
+                <div class="letter-avatar" style="background:var(--gold-light); color:#7A6018">BK</div>
+                <div class="letter-meta">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:2px;">
+                    <span class="letter-name">Sponsor → Bopha Kim</span>
+                    <span class="status-pill pill-sent">Sent</span>
+                  </div>
+                  <div class="letter-preview">Merry Christmas and Happy New Year, Bopha!</div>
+                </div>
+                <div class="letter-time">2d ago</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Monthly chart -->
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <div class="panel-title">Translation volume</div>
+                <div class="panel-subtitle">Letters translated per month, 2025</div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div style="display:flex; align-items:flex-end; gap:8px; height:100px; padding-top:8px;" id="bar-chart"></div>
+              <div style="display:flex; gap:8px; margin-top:6px;" id="bar-labels" ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <div style="display:flex; flex-direction:column; gap:1.25rem;">
+
+          <!-- Progress by language direction -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">This month's breakdown</div>
+            </div>
+            <div class="panel-body">
+              <div class="progress-item">
+                <div class="progress-label"><span>🇺🇸 English → Khmer 🇰🇭</span><span>89</span></div>
+                <div class="progress-track"><div class="progress-fill" style="width:63%; background:var(--blue-mid)"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>🇰🇭 Khmer → English 🇺🇸</span><span>53</span></div>
+                <div class="progress-track"><div class="progress-fill" style="width:37%; background:var(--gold)"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Letters delivered to children</span><span>96%</span></div>
+                <div class="progress-track"><div class="progress-fill" style="width:96%; background:#2A7A4B"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Sponsor replies received</span><span>71%</span></div>
+                <div class="progress-track"><div class="progress-fill" style="width:71%; background:var(--red)"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Activity feed -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Recent activity</div>
+              <button class="panel-action">View all →</button>
+            </div>
+            <div class="panel-body" style="padding:0.5rem 1.25rem;">
+              <div class="activity-item">
+                <div class="activity-dot dot-blue" aria-hidden="true"></div>
+                <div class="activity-text"><strong>Sophea Rath's letter</strong> received from sponsor in California</div>
+                <div class="activity-time">2h</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot dot-green" aria-hidden="true"></div>
+                <div class="activity-text"><strong>Dara Keo's letter</strong> translated EN→KH and delivered</div>
+                <div class="activity-time">5h</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot dot-gold" aria-hidden="true"></div>
+                <div class="activity-text"><strong>Khmer New Year template</strong> used for 6 letters</div>
+                <div class="activity-time">1d</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot dot-red" aria-hidden="true"></div>
+                <div class="activity-text"><strong>Bopha Kim</strong> — no sponsor letter in 90 days, follow-up sent</div>
+                <div class="activity-time">2d</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot dot-blue" aria-hidden="true"></div>
+                <div class="activity-text"><strong>12 letters</strong> translated in batch for Christmas campaign</div>
+                <div class="activity-time">5d</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mini calendar -->
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">June 2025</div>
+            </div>
+            <div class="panel-body" id="mini-cal"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom row -->
+      <div class="three-col">
+        <div class="panel" style="grid-column: span 2;">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title">Children with recent letters</div>
+            </div>
+            <button class="panel-action" onclick="showSection('children')">See all 58 →</button>
+          </div>
+          <div class="panel-body" style="padding:0;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Child</th>
+                  <th>Age</th>
+                  <th>Last letter</th>
+                  <th>Total letters</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;border-radius:50%;background:var(--blue-light);color:var(--blue-deep);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;box-shadow:0 2px 6px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);">SR</div>Sophea Rath</div></td>
+                  <td>11</td>
+                  <td>Today</td>
+                  <td>24</td>
+                  <td><span class="status-pill pill-pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;border-radius:50%;background:#D1FAE5;color:#065F46;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;box-shadow:0 2px 6px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);">DK</div>Dara Keo</div></td>
+                  <td>9</td>
+                  <td>Jun 18</td>
+                  <td>17</td>
+                  <td><span class="status-pill pill-translated">Translated</span></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;border-radius:50%;background:var(--red-light);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;box-shadow:0 2px 6px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);">LV</div>Lina Vuth</div></td>
+                  <td>13</td>
+                  <td>Jun 17</td>
+                  <td>31</td>
+                  <td><span class="status-pill pill-new">New</span></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;border-radius:50%;background:var(--gold-light);color:#7A6018;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;box-shadow:0 2px 6px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);">BK</div>Bopha Kim</div></td>
+                  <td>8</td>
+                  <td>Jun 10</td>
+                  <td>12</td>
+                  <td><span class="status-pill pill-sent">Sent</span></td>
+                </tr>
+                <tr>
+                  <td><div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;border-radius:50%;background:#EDE9FE;color:#5B21B6;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;box-shadow:0 2px 6px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);">CK</div>Chan Kosal</div></td>
+                  <td>14</td>
+                  <td>Jun 5</td>
+                  <td>42</td>
+                  <td><span class="status-pill pill-sent">Sent</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Letter templates</div>
+            <button class="panel-action" onclick="showSection('templates')">All →</button>
+          </div>
+          <div class="panel-body">
+            <div class="tpl-grid">
+              <div class="tpl-card" onclick="showSection('translate')">
+                <div class="tpl-icon" style="background:linear-gradient(150deg,#FFD8B0,var(--orange-deep));">
+                  <svg viewBox="0 0 24 24" fill="var(--white)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                </div>
+                <div class="tpl-name">Greeting</div>
+                <div class="tpl-desc">General hello</div>
+              </div>
+              <div class="tpl-card" onclick="showSection('translate')">
+                <div class="tpl-icon" style="background:linear-gradient(150deg,var(--gold-light),var(--gold));">
+                  <svg viewBox="0 0 24 24" fill="var(--white)"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2v2c0 1.11.89 2 2 2v6c0 1.11.89 2 2 2h12c1.11 0 2-.89 2-2v-6c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6-1c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM4 8h16v2H4V8zm2 4h6v6H6v-6zm8 6v-6h6v6h-6z"/></svg>
+                </div>
+                <div class="tpl-name">Birthday</div>
+                <div class="tpl-desc">Birthday wishes</div>
+              </div>
+              <div class="tpl-card" onclick="showSection('translate')">
+                <div class="tpl-icon" style="background:linear-gradient(150deg,#BCE8CC,#2A7A4B);">
+                  <svg viewBox="0 0 24 24" fill="var(--white)"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+                </div>
+                <div class="tpl-name">Khmer New Year</div>
+                <div class="tpl-desc">Festival greeting</div>
+              </div>
+              <div class="tpl-card" onclick="showSection('translate')">
+                <div class="tpl-icon" style="background:linear-gradient(150deg,#F6C9C1,var(--red));">
+                  <svg viewBox="0 0 24 24" fill="var(--white)"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+                </div>
+                <div class="tpl-name">Encouragement</div>
+                <div class="tpl-desc">Study motivation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TRANSLATE section ── -->
+    <div class="content" id="section-translate" style="display:none;">
+      <div class="section-head">
+        <div class="section-title">Translate a letter</div>
+      </div>
+      <div class="panel" style="margin-bottom:1.25rem;">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Letter translator</div>
+            <div class="panel-subtitle">AI-powered · Culturally adapted for Cambodian children</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="file-input" accept="image/*,.txt" style="display:none;" onchange="handleFileSelect(event)">
+            <div class="upload-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+            </div>
+            <div class="upload-text">
+              <strong>Upload a letter</strong> — drag a photo here, or click to browse
+              <div class="upload-sub">Photos of handwritten or typed letters · .txt files · auto-detects language &amp; translates</div>
+            </div>
+            <button class="upload-btn" type="button" onclick="document.getElementById('file-input').click()">Choose file</button>
+          </div>
+          <div class="upload-status" id="upload-status" style="display:none;"></div>
+
+          <div class="mode-tabs" style="max-width:500px;">
+            <button class="mode-tab active" id="tab-en-km" onclick="setTransMode('en-km')">🇺🇸 Sponsor → 🇰🇭 Child (EN→KH)</button>
+            <button class="mode-tab" id="tab-km-en" onclick="setTransMode('km-en')">🇰🇭 Child → 🇺🇸 Sponsor (KH→EN)</button>
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <div style="font-size:12px;font-weight:500;color:var(--text-secondary);margin-bottom:6px;">Quick templates</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;" id="trans-tpls">
+              <button class="tpl-btn2" data-key="greeting">General greeting</button>
+              <button class="tpl-btn2" data-key="birthday">Birthday wishes</button>
+              <button class="tpl-btn2" data-key="christmas">Christmas</button>
+              <button class="tpl-btn2" data-key="encourage">Encouragement</button>
+              <button class="tpl-btn2" data-key="newyear">Khmer New Year</button>
+            </div>
+          </div>
+
+          <div class="translator-wrap">
+            <div class="trans-pane">
+              <div class="lang-badge" id="src-badge"><span class="lang-flag">🇺🇸</span> English (from sponsor)</div>
+              <textarea class="trans-textarea" id="trans-src" placeholder="Type or paste letter here..."></textarea>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:4px;" id="char-count">0 characters</div>
+            </div>
+
+            <div class="trans-mid">
+              <button class="trans-btn" id="trans-go" onclick="doTranslate()" title="Translate">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+              </button>
+              <div class="trans-mode">Translate</div>
+            </div>
+
+            <div class="trans-pane">
+              <div class="lang-badge" id="dst-badge"><span class="lang-flag">🇰🇭</span> Khmer (for the child)</div>
+              <div class="trans-output khmer" id="trans-out">Translation will appear here after you click translate...</div>
+              <div style="margin-top:8px;display:flex;gap:8px;">
+                <button id="copy-btn2" onclick="copyTrans()" style="display:none; padding:5px 14px;font-size:12px;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--white);cursor:pointer;color:var(--text-secondary);display:none;align-items:center;gap:5px;">
+                  <svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                  Copy
+                </button>
+                <button id="print-btn" onclick="window.print()" style="display:none; padding:5px 14px;font-size:12px;border:1px solid var(--border-strong);border-radius:var(--radius-sm);background:var(--white);cursor:pointer;color:var(--text-secondary);">Print</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:1rem;padding:10px 14px;background:var(--cream);border-radius:var(--radius-md);font-size:12px;color:var(--text-secondary);">
+            <strong style="color:var(--text-primary);">💡 Cultural note:</strong> Translations use proper Khmer honorifics, reflect Buddhist values, and adapt blessings to be culturally meaningful for Cambodian children and families.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── QUEUE section ── -->
+    <div class="content" id="section-queue" style="display:none;">
+      <div class="section-head"><div class="section-title">Letter queue</div></div>
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">All letters — 7 pending</div>
+          <div style="display:flex;gap:8px;">
+            <select style="font-size:12px;border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:4px 8px;background:var(--white);color:var(--text-secondary);">
+              <option>All statuses</option>
+              <option>Pending</option>
+              <option>Translated</option>
+              <option>Sent</option>
+            </select>
+          </div>
+        </div>
+        <div style="padding:0;">
+          <table class="data-table">
+            <thead><tr><th>Child</th><th>Direction</th><th>Received</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Sophea Rath</strong></td><td>KH → EN</td><td>Jun 23, 2025</td><td><span class="status-pill pill-pending">Pending</span></td><td><button onclick="showSection('translate')" style="font-size:12px;color:var(--blue-mid);border:none;background:none;cursor:pointer;font-weight:500;">Translate</button></td></tr>
+              <tr><td><strong>Lina Vuth</strong></td><td>KH → EN</td><td>Jun 22, 2025</td><td><span class="status-pill pill-new">New</span></td><td><button onclick="showSection('translate')" style="font-size:12px;color:var(--blue-mid);border:none;background:none;cursor:pointer;font-weight:500;">Translate</button></td></tr>
+              <tr><td><strong>Dara Keo</strong></td><td>EN → KH</td><td>Jun 18, 2025</td><td><span class="status-pill pill-translated">Translated</span></td><td><button style="font-size:12px;color:var(--text-muted);border:none;background:none;cursor:pointer;">Review</button></td></tr>
+              <tr><td><strong>Bopha Kim</strong></td><td>EN → KH</td><td>Jun 10, 2025</td><td><span class="status-pill pill-sent">Sent</span></td><td><button style="font-size:12px;color:var(--text-muted);border:none;background:none;cursor:pointer;">View</button></td></tr>
+              <tr><td><strong>Chan Kosal</strong></td><td>EN → KH</td><td>Jun 5, 2025</td><td><span class="status-pill pill-sent">Sent</span></td><td><button style="font-size:12px;color:var(--text-muted);border:none;background:none;cursor:pointer;">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CHILDREN section ── -->
+    <div class="content" id="section-children" style="display:none;">
+      <div class="section-head"><div class="section-title">Children (58 active)</div></div>
+      <div class="three-col">
+        <div class="panel">
+          <div class="panel-header"><div class="panel-title">Sophea Rath</div></div>
+          <div class="panel-body">
+            <div style="text-align:center;margin-bottom:1rem;">
+              <div style="width:56px;height:56px;border-radius:50%;background:var(--blue-light);color:var(--blue-deep);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;margin:0 auto 8px;box-shadow:0 4px 10px rgba(120,60,10,0.18),inset 0 1px 1px rgba(255,255,255,0.5);">SR</div>
+              <div style="font-size:12px;color:var(--text-muted);">Age 11 · Grade 5</div>
+              <div style="font-size:12px;color:var(--text-muted);">Phnom Penh</div>
+            </div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-muted);">Letters received</span><strong>24</strong></div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-muted);">Sponsor</span><strong>James M. (USA)</strong></div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;"><span style="color:var(--text-muted);">Last letter</span><strong>Today</strong></div>
+            <button onclick="showSection('translate')" style="width:100%;margin-top:1rem;padding:9px;background:linear-gradient(150deg,var(--orange-bright),var(--orange-mid));color:var(--white);border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(255,107,0,0.35),inset 0 1px 1px rgba(255,255,255,0.35);">Translate letter</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><div class="panel-title">Dara Keo</div></div>
+          <div class="panel-body">
+            <div style="text-align:center;margin-bottom:1rem;">
+              <div style="width:56px;height:56px;border-radius:50%;background:#D1FAE5;color:#065F46;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;margin:0 auto 8px;box-shadow:0 4px 10px rgba(120,60,10,0.18),inset 0 1px 1px rgba(255,255,255,0.5);">DK</div>
+              <div style="font-size:12px;color:var(--text-muted);">Age 9 · Grade 3</div>
+              <div style="font-size:12px;color:var(--text-muted);">Siem Reap</div>
+            </div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-muted);">Letters received</span><strong>17</strong></div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-muted);">Sponsor</span><strong>Maria L. (Canada)</strong></div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;"><span style="color:var(--text-muted);">Last letter</span><strong>Jun 18</strong></div>
+            <button onclick="showSection('translate')" style="width:100%;margin-top:1rem;padding:9px;background:linear-gradient(150deg,var(--orange-bright),var(--orange-mid));color:var(--white);border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(255,107,0,0.35),inset 0 1px 1px rgba(255,255,255,0.35);">Translate letter</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><div class="panel-title">Bopha Kim</div></div>
+          <div class="panel-body">
+            <div style="text-align:center;margin-bottom:1rem;">
+              <div style="width:56px;height:56px;border-radius:50%;background:var(--gold-light);color:#7A6018;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;margin:0 auto 8px;box-shadow:0 4px 10px rgba(120,60,10,0.18),inset 0 1px 1px rgba(255,255,255,0.5);">BK</div>
+              <div style="font-size:12px;color:var(--text-muted);">Age 8 · Grade 2</div>
+              <div style="font-size:12px;color:var(--text-muted);">Battambang</div>
+            </div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-muted);">Letters received</span><strong>12</strong></div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);"><span style="color:var(--text-muted);">Sponsor</span><strong>Thomas K. (Australia)</strong></div>
+            <div style="font-size:12px;display:flex;justify-content:space-between;padding:6px 0;"><span style="color:var(--text-muted);">Last letter</span><strong>Jun 10</strong></div>
+            <button onclick="showSection('translate')" style="width:100%;margin-top:1rem;padding:9px;background:linear-gradient(150deg,var(--orange-bright),var(--orange-mid));color:var(--white);border:none;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(255,107,0,0.35),inset 0 1px 1px rgba(255,255,255,0.35);">Translate letter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TEMPLATES section ── -->
+    <div class="content" id="section-templates" style="display:none;">
+      <div class="section-head"><div class="section-title">Letter templates</div></div>
+      <div class="panel">
+        <div class="panel-header"><div class="panel-title">Available templates</div></div>
+        <div class="panel-body">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+            <div class="tpl-card" onclick="showSection('translate')" style="padding:1.25rem;">
+              <div class="tpl-icon" style="background:linear-gradient(150deg,#FFD8B0,var(--orange-deep));width:36px;height:36px;margin-bottom:10px;box-shadow:0 3px 8px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);"><svg viewBox="0 0 24 24" fill="var(--white)" style="width:18px;height:18px"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+              <div class="tpl-name" style="font-size:14px;margin-bottom:4px;">General greeting</div>
+              <div class="tpl-desc" style="font-size:12px;">A warm hello introducing yourself to the child and their family.</div>
+            </div>
+            <div class="tpl-card" onclick="showSection('translate')" style="padding:1.25rem;">
+              <div class="tpl-icon" style="background:linear-gradient(150deg,var(--gold-light),var(--gold));width:36px;height:36px;margin-bottom:10px;box-shadow:0 3px 8px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);"><svg viewBox="0 0 24 24" fill="var(--white)" style="width:18px;height:18px"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2v2c0 1.11.89 2 2 2v6c0 1.11.89 2 2 2h12c1.11 0 2-.89 2-2v-6c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6-1c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM4 8h16v2H4V8zm2 4h6v6H6v-6zm8 6v-6h6v6h-6z"/></svg></div>
+              <div class="tpl-name" style="font-size:14px;margin-bottom:4px;">Birthday wishes</div>
+              <div class="tpl-desc" style="font-size:12px;">Heartfelt birthday blessings for the child's special day.</div>
+            </div>
+            <div class="tpl-card" onclick="showSection('translate')" style="padding:1.25rem;">
+              <div class="tpl-icon" style="background:linear-gradient(150deg,#BCE8CC,#2A7A4B);width:36px;height:36px;margin-bottom:10px;box-shadow:0 3px 8px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);"><svg viewBox="0 0 24 24" fill="var(--white)" style="width:18px;height:18px"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg></div>
+              <div class="tpl-name" style="font-size:14px;margin-bottom:4px;">Khmer New Year</div>
+              <div class="tpl-desc" style="font-size:12px;">Seasonal blessings for ពិធីបុណ្យចូលឆ្នាំខ្មែរ with cultural context.</div>
+            </div>
+            <div class="tpl-card" onclick="showSection('translate')" style="padding:1.25rem;">
+              <div class="tpl-icon" style="background:linear-gradient(150deg,#F6C9C1,var(--red));width:36px;height:36px;margin-bottom:10px;box-shadow:0 3px 8px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);"><svg viewBox="0 0 24 24" fill="var(--white)" style="width:18px;height:18px"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+              <div class="tpl-name" style="font-size:14px;margin-bottom:4px;">Encouragement</div>
+              <div class="tpl-desc" style="font-size:12px;">Motivating words about education and a bright future.</div>
+            </div>
+            <div class="tpl-card" onclick="showSection('translate')" style="padding:1.25rem;">
+              <div class="tpl-icon" style="background:linear-gradient(150deg,#FFD8B0,var(--orange-mid));width:36px;height:36px;margin-bottom:10px;box-shadow:0 3px 8px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);"><svg viewBox="0 0 24 24" fill="var(--white)" style="width:18px;height:18px"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg></div>
+              <div class="tpl-name" style="font-size:14px;margin-bottom:4px;">Christmas</div>
+              <div class="tpl-desc" style="font-size:12px;">Christmas and New Year blessings adapted for Cambodian families.</div>
+            </div>
+            <div class="tpl-card" onclick="showSection('translate')" style="padding:1.25rem;">
+              <div class="tpl-icon" style="background:linear-gradient(150deg,#3D352E,var(--charcoal));width:36px;height:36px;margin-bottom:10px;box-shadow:0 3px 8px rgba(120,60,10,0.16),inset 0 1px 1px rgba(255,255,255,0.5);"><svg viewBox="0 0 24 24" fill="var(--white)" style="width:18px;height:18px"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+              <div class="tpl-name" style="font-size:14px;margin-bottom:4px;">School update request</div>
+              <div class="tpl-desc" style="font-size:12px;">Ask the child about their studies, friends, and favourite subjects.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HISTORY section ── -->
+    <div class="content" id="section-history" style="display:none;">
+      <div class="section-head"><div class="section-title">Translation history</div></div>
+      <div class="panel">
+        <div class="panel-header"><div class="panel-title">Past translations — 1,204 total</div></div>
+        <div style="padding:0;">
+          <table class="data-table">
+            <thead><tr><th>Date</th><th>Child</th><th>Direction</th><th>Words</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Jun 23, 2025</td><td>Sophea Rath</td><td>KH → EN</td><td>148</td><td><span class="status-pill pill-pending">In progress</span></td></tr>
+              <tr><td>Jun 18, 2025</td><td>Dara Keo</td><td>EN → KH</td><td>203</td><td><span class="status-pill pill-sent">Delivered</span></td></tr>
+              <tr><td>Jun 10, 2025</td><td>Bopha Kim</td><td>EN → KH</td><td>176</td><td><span class="status-pill pill-sent">Delivered</span></td></tr>
+              <tr><td>Jun 5, 2025</td><td>Chan Kosal</td><td>EN → KH</td><td>221</td><td><span class="status-pill pill-sent">Delivered</span></td></tr>
+              <tr><td>May 28, 2025</td><td>Lina Vuth</td><td>KH → EN</td><td>134</td><td><span class="status-pill pill-sent">Delivered</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .tpl-btn2 {
+    padding: 5px 14px; border-radius: 20px;
+    border: 1px solid var(--border-strong); background: var(--white);
+    font-size: 12px; cursor: pointer; color: var(--text-secondary);
+    transition: all 0.15s; font-family: 'Inter', sans-serif;
+  }
+  .tpl-btn2:hover { border-color: var(--blue-mid); color: var(--blue-mid); background: var(--blue-light); }
+</style>
+
+<script>
+  const sections = ['dashboard','translate','queue','children','templates','history'];
+  const sectionTitles = { dashboard:'Dashboard', translate:'Translate a letter', queue:'Letter queue', children:'Children', templates:'Templates', history:'History' };
+
+  function showSection(id) {
+    sections.forEach(s => {
+      document.getElementById('section-' + s).style.display = s === id ? '' : 'none';
+    });
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    const btns = document.querySelectorAll('.nav-item');
+    btns.forEach(b => { if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) b.classList.add('active'); });
+    document.getElementById('page-title').textContent = sectionTitles[id] || id;
+    window.scrollTo(0, 0);
+  }
+
+  // ── Bar chart ──
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const vals = [68,74,89,102,118,142,0,0,0,0,0,0];
+  const maxV = Math.max(...vals.filter(v => v > 0));
+  const chart = document.getElementById('bar-chart');
+  const labels = document.getElementById('bar-labels');
+  vals.forEach((v, i) => {
+    if (v === 0) return;
+    const pct = Math.round((v / maxV) * 100);
+    const bar = document.createElement('div');
+    bar.className = 'spark-bar' + (i === 5 ? ' highlight' : '');
+    bar.style.height = pct + '%';
+    bar.style.flex = '1';
+    bar.title = months[i] + ': ' + v + ' letters';
+    chart.appendChild(bar);
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'flex:1;text-align:center;font-size:10px;color:var(--text-muted);';
+    lbl.textContent = months[i];
+    labels.appendChild(lbl);
+  });
+
+  // ── Mini calendar ──
+  const cal = document.getElementById('mini-cal');
+  const dayNames = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+  let html = '<div class="calendar-grid">';
+  dayNames.forEach(d => { html += '<div class="cal-day-name">' + d + '</div>'; });
+  const today = new Date();
+  const firstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
+  const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+  const events = [5, 10, 18, 23];
+  for (let i = 0; i < firstDay; i++) html += '<div class="cal-day other-month"></div>';
+  for (let d = 1; d <= daysInMonth; d++) {
+    let cls = 'cal-day';
+    if (d === today.getDate()) cls += ' today';
+    if (events.includes(d)) cls += ' has-event';
+    html += '<div class="' + cls + '">' + d + '</div>';
+  }
+  html += '</div>';
+  cal.innerHTML = html;
+
+  // ── Translate ──
+  let transMode = 'en-km';
+
+  const tplTexts = {
+    greeting: `Dear [Child's name],\n\nI hope this letter finds you well and happy! My name is [Your name] and I am so glad to be your sponsor. I pray for you every day and think about you often.\n\nI hope you are doing well in school. Please study hard and know that I believe in you.\n\nWith love and blessings,\n[Your name]`,
+    birthday: `Dear [Child's name],\n\nHappy Birthday! I am thinking of you on your special day and wishing you all the happiness in the world. May God bless you and your family.\n\nI pray that this new year of your life will bring you joy, health, and good grades in school.\n\nWith much love,\n[Your name]`,
+    christmas: `Dear [Child's name],\n\nMerry Christmas and Happy New Year! This is a special time of year to share love and happiness with the people we care about.\n\nI am thankful that you are in my life. I hope you and your family are healthy and joyful this season.\n\nGod bless you,\n[Your name]`,
+    encourage: `Dear [Child's name],\n\nI wanted to write to tell you how proud I am of you. You are growing up to be a wonderful person. Keep working hard in school and always be kind to others.\n\nI believe you have a bright future ahead of you. Never give up on your dreams!\n\nWith all my love,\n[Your name]`,
+    newyear: `Dear [Child's name],\n\nHappy Khmer New Year! I hope you and your family have a joyful and peaceful celebration. This is a wonderful time to be with family and give thanks.\n\nI am so proud of everything you are learning. May this new year bring you happiness, health, and much success in school.\n\nWith warm wishes,\n[Your name]`,
+  };
+
+  document.querySelectorAll('.tpl-btn2').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.key;
+      if (tplTexts[key]) {
+        document.getElementById('trans-src').value = tplTexts[key];
+        updateCharCount();
+        document.getElementById('trans-out').textContent = 'Translation will appear here after you click translate...';
+        document.getElementById('trans-out').style.color = 'var(--text-muted)';
+        document.getElementById('copy-btn2').style.display = 'none';
+        document.getElementById('print-btn').style.display = 'none';
+      }
+    });
+  });
+
+  function updateCharCount() {
+    const v = document.getElementById('trans-src').value;
+    document.getElementById('char-count').textContent = v.length + ' characters';
+  }
+
+  document.getElementById('trans-src').addEventListener('input', updateCharCount);
+
+  function setTransMode(mode) {
+    transMode = mode;
+    document.getElementById('tab-en-km').classList.toggle('active', mode === 'en-km');
+    document.getElementById('tab-km-en').classList.toggle('active', mode === 'km-en');
+    const isEnKm = mode === 'en-km';
+    document.getElementById('src-badge').innerHTML = isEnKm ? '<span class="lang-flag">🇺🇸</span> English (from sponsor)' : '<span class="lang-flag">🇰🇭</span> Khmer (from child)';
+    document.getElementById('dst-badge').innerHTML = isEnKm ? '<span class="lang-flag">🇰🇭</span> Khmer (for the child)' : '<span class="lang-flag">🇺🇸</span> English (for the sponsor)';
+    document.getElementById('trans-src').placeholder = isEnKm ? 'Type or paste the sponsor letter here...' : 'សូមសរសេរលិខិតរបស់កុមារនៅទីនេះ...';
+    if (isEnKm) document.getElementById('trans-out').classList.add('khmer');
+    else document.getElementById('trans-out').classList.remove('khmer');
+    document.getElementById('trans-out').textContent = 'Translation will appear here after you click translate...';
+    document.getElementById('trans-out').style.color = 'var(--text-muted)';
+  }
+
+  async function doTranslate() {
+    const input = document.getElementById('trans-src').value.trim();
+    if (!input) return false;
+    const btn = document.getElementById('trans-go');
+    btn.disabled = true;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;animation:spin 1s linear infinite"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>';
+
+    const out = document.getElementById('trans-out');
+    out.textContent = 'Translating with cultural context...';
+    out.style.color = 'var(--text-muted)';
+
+    const isEnKm = transMode === 'en-km';
+    const systemPrompt = isEnKm
+      ? `You are a professional translator for children's sponsorship letters from international sponsors to Cambodian children. Translate English to Khmer script.\n\nGuidelines:\n- Use warm, simple, child-appropriate Khmer a child aged 6–15 can understand\n- Use proper Khmer honorifics and polite forms of address\n- Reflect Cambodian cultural values: respect for elders, education, family, Buddhist blessings\n- Use natural Khmer expressions, not word-for-word translation\n- For blessings, use Khmer cultural equivalents (ពរជ័យ, សុខភាព etc.)\n- Output ONLY the translated letter text, nothing else`
+      : `You are a professional translator for children's sponsorship letters from Cambodian children to their international sponsors. Translate Khmer to natural warm English.\n\nGuidelines:\n- Preserve the innocent heartfelt voice of a Cambodian child\n- Keep cultural expressions authentic\n- Maintain warmth and sincerity\n- Translate Buddhist greetings into warm English equivalents\n- Output ONLY the translated letter text, nothing else`;
+
+    let ok = false;
+    try {
+      const resp = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-6',
+          max_tokens: 1000,
+          system: systemPrompt,
+          messages: [{ role: 'user', content: isEnKm ? `Translate this sponsor letter to Khmer:\n\n${input}` : `Translate this child's letter to English:\n\n${input}` }]
+        })
+      });
+      if (!resp.ok) {
+        const errBody = await resp.text().catch(() => '');
+        throw new Error('API responded with status ' + resp.status + (errBody ? (': ' + errBody.slice(0, 200)) : ''));
+      }
+      const data = await resp.json();
+      const text = (data.content || []).map(b => b.text || '').join('');
+      if (text) {
+        out.textContent = text;
+        out.style.color = 'var(--text-primary)';
+        document.getElementById('copy-btn2').style.display = 'inline-flex';
+        document.getElementById('print-btn').style.display = 'inline-block';
+        ok = true;
+      } else {
+        out.textContent = 'Translation error — please try again.';
+        out.style.color = 'var(--red)';
+      }
+    } catch(e) {
+      out.textContent = 'Connection error: ' + e.message;
+      out.style.color = 'var(--red)';
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>';
+    return ok;
+  }
+
+  /* ── Upload correspondence + auto-translate ── */
+  const uploadZone = document.getElementById('upload-zone');
+  const fileInput = document.getElementById('file-input');
+  const uploadStatus = document.getElementById('upload-status');
+
+  uploadZone.addEventListener('click', (e) => {
+    if (e.target.closest('.upload-btn')) return; // button has its own handler
+    fileInput.click();
+  });
+
+  ['dragenter', 'dragover'].forEach(evt => {
+    uploadZone.addEventListener(evt, (e) => {
+      e.preventDefault(); e.stopPropagation();
+      uploadZone.classList.add('dragover');
+    });
+  });
+
+  ['dragleave', 'drop'].forEach(evt => {
+    uploadZone.addEventListener(evt, (e) => {
+      e.preventDefault(); e.stopPropagation();
+      uploadZone.classList.remove('dragover');
+    });
+  });
+
+  uploadZone.addEventListener('drop', (e) => {
+    const files = e.dataTransfer.files;
+    if (files && files.length) processUploadedFile(files[0]);
+  });
+
+  function handleFileSelect(e) {
+    const file = e.target.files[0];
+    if (file) processUploadedFile(file);
+    fileInput.value = '';
+  }
+
+  function setUploadStatus(message, kind) {
+    uploadStatus.style.display = 'flex';
+    uploadStatus.className = 'upload-status' + (kind ? ' ' + kind : '');
+    if (kind === 'loading') {
+      uploadStatus.innerHTML = '<span class="upload-spinner"></span><span>' + message + '</span>';
+    } else {
+      uploadStatus.innerHTML = '<span>' + message + '</span>';
+    }
+  }
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function readAsText(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsText(file);
+    });
+  }
+
+  // Simple, fast heuristic: Khmer Unicode block is U+1780–U+17FF.
+  function detectIsKhmer(text) {
+    const khmerChars = (text.match(/[\u1780-\u17FF]/g) || []).length;
+    const letterChars = (text.match(/[A-Za-z\u1780-\u17FF]/g) || []).length;
+    if (letterChars === 0) return false;
+    return khmerChars / letterChars > 0.25;
+  }
+
+  async function processUploadedFile(file) {
+    const isImage = file.type.startsWith('image/');
+    const isText = file.type === 'text/plain' || file.name.toLowerCase().endsWith('.txt');
+
+    if (!isImage && !isText) {
+      setUploadStatus('Unsupported file type — please upload a photo (JPG/PNG) or a .txt file.', 'error');
+      return;
+    }
+
+    setUploadStatus('Reading "' + file.name + '"…', 'loading');
+
+    try {
+      let extractedText = '';
+
+      if (isText) {
+        extractedText = (await readAsText(file)).trim();
+      } else {
+        // Image: ask Claude to transcribe the handwritten/typed letter exactly as written.
+        const base64 = await fileToBase64(file);
+        const resp = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-6',
+            max_tokens: 1500,
+            system: 'You transcribe photos of handwritten or typed letters exactly as written, preserving the original language (English or Khmer script). Output ONLY the transcribed letter text, with no commentary, preamble, or markdown.',
+            messages: [{
+              role: 'user',
+              content: [
+                { type: 'image', source: { type: 'base64', media_type: file.type, data: base64 } },
+                { type: 'text', text: 'Transcribe the letter in this photo exactly as written.' }
+              ]
+            }]
+          })
+        });
+        if (!resp.ok) {
+          const errBody = await resp.text().catch(() => '');
+          throw new Error('Could not read the photo (status ' + resp.status + ')' + (errBody ? ': ' + errBody.slice(0, 200) : ''));
+        }
+        const data = await resp.json();
+        extractedText = ((data.content || []).map(b => b.text || '').join('')).trim();
+      }
+
+      if (!extractedText) {
+        setUploadStatus('Could not read any text from that file — please try another photo or paste the letter manually.', 'error');
+        return;
+      }
+
+      // Detect language direction automatically.
+      const isKhmer = detectIsKhmer(extractedText);
+      const targetMode = isKhmer ? 'km-en' : 'en-km';
+      if (targetMode !== transMode) setTransMode(targetMode);
+
+      document.getElementById('trans-src').value = extractedText;
+      updateCharCount();
+
+      setUploadStatus(
+        'Detected ' + (isKhmer ? 'Khmer (child\'s letter)' : 'English (sponsor\'s letter)') + ' — translating automatically…',
+        'loading'
+      );
+
+      const translated = await doTranslate();
+      if (translated) {
+        setUploadStatus('"' + file.name + '" translated and ready below.', 'success');
+      } else {
+        setUploadStatus('Text was read from "' + file.name + '", but translation failed — see the error in the output box below, then try the translate button again.', 'error');
+      }
+
+    } catch (err) {
+      setUploadStatus('Upload error: ' + err.message, 'error');
+    }
+  }
+
+  function copyTrans() {
+    navigator.clipboard.writeText(document.getElementById('trans-out').textContent).then(() => {
+      const b = document.getElementById('copy-btn2');
+      b.textContent = '✓ Copied!';
+      setTimeout(() => { b.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:13px;height:13px"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg> Copy'; }, 2000);
+    });
+  }
+</script>
+<style>
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media print {
+  .sidebar, .topbar { display: none !important; }
+  .main { margin-left: 0 !important; }
+  #section-translate { display: block !important; }
+}
+</style>
+</body>
+</html>
