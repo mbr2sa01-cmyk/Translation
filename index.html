@@ -377,6 +377,35 @@
     font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
   }
 
+  /* ── API Key bar ── */
+  .api-key-bar {
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(165deg, #FFF8F2, var(--gold-pale));
+    border: 1px solid rgba(255,122,26,0.25);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .api-key-bar label {
+    font-size: 12px; font-weight: 600; color: var(--text-secondary);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .api-key-input {
+    flex: 1; border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm); padding: 6px 10px;
+    font-size: 12px; font-family: monospace;
+    color: var(--text-primary); background: var(--white);
+    outline: none; transition: border-color 0.15s;
+  }
+  .api-key-input:focus { border-color: var(--orange-mid); }
+  .api-key-status {
+    font-size: 11px; white-space: nowrap; flex-shrink: 0;
+    font-weight: 500;
+  }
+  .api-key-status.ok { color: #2A7A4B; }
+  .api-key-status.missing { color: var(--red); }
+
   /* ── Upload zone ── */
   .upload-zone {
     display: flex; align-items: center; gap: 14px;
@@ -660,24 +689,6 @@
     .tpl-grid { grid-template-columns: 1fr; }
   }
 
-  /* ── API Key input ── */
-  .apikey-wrap {
-    display: flex; align-items: center; gap: 7px;
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-sm);
-    padding: 5px 10px;
-    background: var(--cream);
-    box-shadow: var(--shadow-pressed);
-    transition: border-color 0.15s;
-  }
-  .apikey-wrap:focus-within { border-color: var(--orange-mid); background: var(--white); }
-  #apikey-input {
-    border: none; background: transparent; outline: none;
-    font-size: 12px; font-family: 'Inter', monospace;
-    color: var(--text-primary); width: 180px;
-  }
-  #apikey-input::placeholder { color: var(--text-muted); }
-
   /* ── Scrollbar ── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -763,12 +774,6 @@
         </div>
       </div>
       <div class="topbar-right">
-        <div class="apikey-wrap" id="apikey-wrap" title="Enter your Anthropic API key">
-          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;flex-shrink:0;color:var(--text-muted)"><path d="M12.65 10A5.99 5.99 0 0 0 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6a5.99 5.99 0 0 0 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
-          <input type="password" id="apikey-input" placeholder="sk-ant-… API key" autocomplete="off" spellcheck="false"
-            oninput="saveApiKey(this.value)" />
-          <span id="apikey-status" style="font-size:11px;white-space:nowrap;"></span>
-        </div>
         <button class="topbar-btn" onclick="showSection('translate')">
           <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
           New translation
@@ -1098,6 +1103,13 @@
           </div>
         </div>
         <div class="panel-body">
+          <!-- API Key -->
+          <div class="api-key-bar">
+            <label for="api-key-input">🔑 Anthropic API Key</label>
+            <input type="password" id="api-key-input" class="api-key-input" placeholder="sk-ant-api03-..." oninput="updateApiKeyStatus()" autocomplete="off" spellcheck="false">
+            <span class="api-key-status missing" id="api-key-status">Not set</span>
+          </div>
+
           <div class="upload-zone" id="upload-zone">
             <input type="file" id="file-input" accept="image/*,.txt" style="display:none;" onchange="handleFileSelect(event)">
             <div class="upload-icon">
@@ -1316,31 +1328,6 @@
 </style>
 
 <script>
-  // ── API Key management ──
-  function saveApiKey(val) {
-    sessionStorage.setItem('anthro_key', val.trim());
-    updateKeyStatus(val.trim());
-  }
-  function getApiKey() {
-    return sessionStorage.getItem('anthro_key') || '';
-  }
-  function updateKeyStatus(key) {
-    const el = document.getElementById('apikey-status');
-    if (!key) { el.textContent = ''; return; }
-    if (key.startsWith('sk-ant-')) {
-      el.textContent = '✓';
-      el.style.color = '#2A7A4B';
-    } else {
-      el.textContent = '?';
-      el.style.color = 'var(--red)';
-    }
-  }
-  // Restore key from session if available
-  (function() {
-    const k = getApiKey();
-    if (k) { document.getElementById('apikey-input').value = k; updateKeyStatus(k); }
-  })();
-
   const sections = ['dashboard','translate','queue','children','templates','history'];
   const sectionTitles = { dashboard:'Dashboard', translate:'Translate a letter', queue:'Letter queue', children:'Children', templates:'Templates', history:'History' };
 
@@ -1441,7 +1428,43 @@
     document.getElementById('trans-out').style.color = 'var(--text-muted)';
   }
 
+  // Load saved API key on startup
+  (function() {
+    const saved = localStorage.getItem('anthropic_api_key');
+    if (saved) {
+      document.getElementById('api-key-input').value = saved;
+      updateApiKeyStatus();
+    }
+  })();
+
+  function updateApiKeyStatus() {
+    const key = document.getElementById('api-key-input').value.trim();
+    const status = document.getElementById('api-key-status');
+    if (key.startsWith('sk-ant-') && key.length > 20) {
+      status.textContent = '✓ Saved';
+      status.className = 'api-key-status ok';
+      localStorage.setItem('anthropic_api_key', key);
+    } else if (key.length > 0) {
+      status.textContent = '⚠ Check key';
+      status.className = 'api-key-status missing';
+    } else {
+      status.textContent = 'Not set';
+      status.className = 'api-key-status missing';
+      localStorage.removeItem('anthropic_api_key');
+    }
+  }
+
+  function getApiKey() {
+    return document.getElementById('api-key-input').value.trim();
+  }
+
   async function doTranslate() {
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      alert('Please enter your Anthropic API key in the field above before translating.');
+      document.getElementById('api-key-input').focus();
+      return false;
+    }
     const input = document.getElementById('trans-src').value.trim();
     if (!input) return false;
     const btn = document.getElementById('trans-go');
@@ -1457,24 +1480,15 @@
       ? `You are a professional translator for children's sponsorship letters from international sponsors to Cambodian children. Translate English to Khmer script.\n\nGuidelines:\n- Use warm, simple, child-appropriate Khmer a child aged 6–15 can understand\n- Use proper Khmer honorifics and polite forms of address\n- Reflect Cambodian cultural values: respect for elders, education, family, Buddhist blessings\n- Use natural Khmer expressions, not word-for-word translation\n- For blessings, use Khmer cultural equivalents (ពរជ័យ, សុខភាព etc.)\n- Output ONLY the translated letter text, nothing else`
       : `You are a professional translator for children's sponsorship letters from Cambodian children to their international sponsors. Translate Khmer to natural warm English.\n\nGuidelines:\n- Preserve the innocent heartfelt voice of a Cambodian child\n- Keep cultural expressions authentic\n- Maintain warmth and sincerity\n- Translate Buddhist greetings into warm English equivalents\n- Output ONLY the translated letter text, nothing else`;
 
-    const apiKey = getApiKey();
-    if (!apiKey) {
-      out.textContent = 'Please enter your Anthropic API key in the box at the top of the page.';
-      out.style.color = 'var(--red)';
-      btn.disabled = false;
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>';
-      return false;
-    }
-
     let ok = false;
     try {
       const resp = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': apiKey,
           'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
+          'anthropic-dangerous-direct-browser-access': 'true',
+          'x-api-key': apiKey
         },
         body: JSON.stringify({
           model: 'claude-sonnet-4-6',
@@ -1581,6 +1595,13 @@
   }
 
   async function processUploadedFile(file) {
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      setUploadStatus('Please enter your Anthropic API key above before uploading.', 'error');
+      document.getElementById('api-key-input').focus();
+      return;
+    }
+
     const isImage = file.type.startsWith('image/');
     const isText = file.type === 'text/plain' || file.name.toLowerCase().endsWith('.txt');
 
@@ -1599,15 +1620,13 @@
       } else {
         // Image: ask Claude to transcribe the handwritten/typed letter exactly as written.
         const base64 = await fileToBase64(file);
-        const apiKey = getApiKey();
-        if (!apiKey) throw new Error('No API key — please enter your Anthropic API key at the top of the page.');
         const resp = await fetch('https://api.anthropic.com/v1/messages', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-api-key': apiKey,
             'anthropic-version': '2023-06-01',
-            'anthropic-dangerous-direct-browser-access': 'true'
+            'anthropic-dangerous-direct-browser-access': 'true',
+            'x-api-key': apiKey
           },
           body: JSON.stringify({
             model: 'claude-sonnet-4-6',
